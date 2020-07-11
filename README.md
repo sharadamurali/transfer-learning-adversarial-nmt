@@ -11,10 +11,10 @@ All the datasets have been obtained from the Web Inventory of Transcribed and Tr
 ## Usage
 
 To preprocess the dataset(s): (The steps below are used to download and process the German-English dataset. These steps have to be repeated for each dataset used in the experiment.)
-1. git clone https://github.com/nazim1021/fairseq.git
-2. cd examples/translation/; bash prepare-iwslt14.sh; cd ../.. (make the dataset name changes in bash script)
-3. TEXT=examples/translation/iwslt14.tokenized.de-en
-4. python preprocess.py --source-lang de --target-lang en --trainpref $TEXT/train --validpref $TEXT/valid --testpref $TEXT/test --destdir data-bin/iwslt14.tokenized.de-en
+1. `git clone https://github.com/nazim1021/fairseq.git`
+2. `cd examples/translation/; bash prepare-iwslt14.sh; cd ../..` (make the dataset name changes in bash script)
+3. `TEXT=examples/translation/iwslt14.tokenized.de-en`
+4. `python preprocess.py --source-lang de --target-lang en --trainpref $TEXT/train --validpref $TEXT/valid --testpref $TEXT/test --destdir data-bin/iwslt14.tokenized.de-en`
 
 ### Training and testing:
 1. To "pre-train" the model on the high-resource language: 
@@ -27,9 +27,9 @@ This will save the model in checkpoints folder.
 ```
 python joint_train_load.py --data data-bin/iwslt14.tokenized.sl-en/  --src_lang sl --trg_lang en --learning_rate 1e-3 --joint-batch-size 64 --gpuid 0 --clip-norm 1.0 --epochs 10
 ```
-Use joint_train_load_paramfreeze.py for transfer learning with parameter freezing.
+Use `joint_train_load_paramfreeze.py` for transfer learning with parameter freezing.
 
-3. Generate predictions as per below:
+3. Generate predictions:
 ```
 python generate.py --data data-bin/iwslt14.tokenized.sl-en/ --src_lang sl --trg_lang en --batch-size 64 --gpuid 0
 ```
@@ -49,9 +49,9 @@ perl scripts/multi-bleu.perl real_processed.txt < predictions_processed.txt
 
 ## References
 1. Code adapted from: https://github.com/nazim1021/neural-machine-translation-using-gan
-2. https://github.com/pytorch/fairseq
-3. https://github.com/moses-smt/mosesdecoder/tree/master/scripts
-4. Barret Zoph, Deniz Yuret, Jonathan May, and Kevin Knight. Transfer learning for low-resource neural machine translation, 2016.
-5. Toan Q. Nguyen and David Chiang. Transfer learning across low-resource, related languages for neural machine translation, 2017.
-6. Tom Kocmi and Ondˇrej Bojar. Trivial transfer learning for low-resource neural machine translation, 2018.
+2. Barret Zoph, Deniz Yuret, Jonathan May, and Kevin Knight. Transfer learning for low-resource neural machine translation, 2016.
+3. Toan Q. Nguyen and David Chiang. Transfer learning across low-resource, related languages for neural machine translation, 2017.
+4. Tom Kocmi and Ondˇrej Bojar. Trivial transfer learning for low-resource neural machine translation, 2018.
+5. https://github.com/pytorch/fairseq
+6. https://github.com/moses-smt/mosesdecoder/tree/master/scripts
 7. WIT3. https://wit3.fbk.eu.
